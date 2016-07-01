@@ -58,12 +58,19 @@ var create = function(){
                     allyGroup
                     );
 
-  for(var i = 0; i < 10; i++){
-       new Tank(Math.random()*TankOnline.game.world.bounds.width,
+    tank1 = new Tank(Math.random()*TankOnline.game.world.bounds.width,
                     Math.random()*TankOnline.game.world.bounds.height,
-                    enemyGroup
+                    allyGroup
                     );
-  }
+
+
+
+  // for(var i = 0; i < 10; i++){
+  //      new Tank(Math.random()*TankOnline.game.world.bounds.width,
+  //                   Math.random()*TankOnline.game.world.bounds.height,
+  //                   enemyGroup
+  //                   );
+  // }
 
   wallGroup = TankOnline.game.add.physicsGroup();
 
@@ -86,6 +93,10 @@ var create = function(){
 
 
 
+// var controller = function(){
+
+// }
+
 var update = function(){
   TankOnline.game.physics.arcade.collide(tank.sprite,wallGroup);
   TankOnline.game.physics.arcade.overlap(TankOnline.bulletGroup,
@@ -101,6 +112,8 @@ var update = function(){
                                           this);
 
   var direction = new Phaser.Point();
+  var direction1 = new Phaser.Point();
+
   if(TankOnline.keyboard.isDown(Phaser.KeyCode.LEFT)) direction.x = -1;
   else if (TankOnline.keyboard.isDown(Phaser.KeyCode.RIGHT)) direction.x = 1;
   else direction.x = 0;
@@ -109,12 +122,29 @@ var update = function(){
   else if (TankOnline.keyboard.isDown(Phaser.KeyCode.DOWN)) direction.y = 1;
   else direction.y = 0;
 
-  tank.update(direction);
+  if(TankOnline.keyboard.isDown(Phaser.KeyCode.A)) direction1.x = -1;
+  else if (TankOnline.keyboard.isDown(Phaser.KeyCode.D)) direction1.x = 1;
+  else direction1.x = 0;
+
+  if(TankOnline.keyboard.isDown(Phaser.KeyCode.W)) direction1.y = -1;
+  else if (TankOnline.keyboard.isDown(Phaser.KeyCode.S)) direction1.y = 1;
+  else direction1.y = 0;
+
+
 
   if(TankOnline.keyboard.isDown(Phaser.KeyCode.SPACEBAR)){
     tank.fire();
   }
+
+   if(TankOnline.keyboard.isDown(Phaser.KeyCode.SHIFT)){
+    tank1.fire();
+  }
+
+  tank.update(direction);//đưa vào biến direction nghĩa là sao??
+  tank1.update(direction1);
 }
+
+
 
 var onBulletHitWall = function(bullet,wall){//cứ hai phần tử của bullet và wall chạm nhau thì sẽ thực hiện function này 
   bullet.kill();
