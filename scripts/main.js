@@ -65,12 +65,12 @@ var create = function(){
 
 
 
-  // for(var i = 0; i < 10; i++){
-  //      new Tank(Math.random()*TankOnline.game.world.bounds.width,
-  //                   Math.random()*TankOnline.game.world.bounds.height,
-  //                   enemyGroup
-  //                   );
-  // }
+  for(var i = 0; i < 10; i++){
+       new Tank(Math.random()*TankOnline.game.world.bounds.width,
+                    Math.random()*TankOnline.game.world.bounds.height,
+                    enemyGroup
+                    );
+  }
 
   wallGroup = TankOnline.game.add.physicsGroup();
 
