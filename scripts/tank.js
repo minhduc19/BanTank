@@ -1,7 +1,7 @@
 class Tank{
   constructor(x, y,group){
     this.sprite = group.create(x,y,'tankDown');
-    TankOnline.game.physics.arcade.enable(this.sprite);
+    //TankOnline.game.physics.arcade.enable(this.sprite);
     this.sprite.anchor.set(0.5,0.5);
     this.direction = new Phaser.Point(0,1);
     this.lastShortTime = TankOnline.game.time.now;
