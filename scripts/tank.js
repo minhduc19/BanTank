@@ -1,13 +1,13 @@
 class Tank{
-  constructor(x, y,group){
-    this.sprite = group.create(x,y,'tankDown');
+  constructor(x, y, group, id){
+    this.sprite = group.create(x, y, 'tankDown');
     TankOnline.game.physics.arcade.enable(this.sprite);
     this.sprite.anchor.set(0.5,0.5);
     this.direction = new Phaser.Point(0,1);
-    this.lastShortTime = TankOnline.game.time.now;
-    this.sprite.body.collideWorldBounds = true; //không cho tank chạy ra ngoài màn hình 
+    this.lastShotTime = TankOnline.game.time.now;
+    this.sprite.body.collideWorldBounds = true;
     this.sprite.health = 5;
-
+    this.sprite.id = id;
   }
 
   update(direction){
@@ -38,13 +38,5 @@ class Tank{
     else{
       this.sprite.body.velocity.y = 0;
     }
-  }
-
-  fire(){
-    if(TankOnline.game.time.now - this.lastShortTime > 200){
-      this.lastShortTime = TankOnline.game.time.now;
-      new Bullet(this);
-    }
-    
   }
 }
